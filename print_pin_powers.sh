@@ -1,9 +1,17 @@
 #!/bin/bash
 filename="$1"
-line=$(grep -A19 'Pin Power Map (MeV/s)' $filename)
-line=${line##*]}
 for a in `seq 2 19`;
 do
-  newline=$(line[$a] + line[$(($a + 18))])
-  echo ${newline##*]} >> $2
+  line=$(grep -A$a 'Pin Power Map (MeV/s)' $filename)
+  line=${line##*]}
+ # echo $line
+  num=21
+  b=$(($a + $num))
+  newline=$(grep -A$b 'Pin Power Map (MeV/s)' $filename)
+  newline=${newline##*]}
+  newline=${newline:1} 
+ # echo $newline
+  newnewline=$(($line + $newline))
+  echo $newnewline >> $2
 done
+
