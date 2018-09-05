@@ -5,10 +5,11 @@ while read -r line
 do
     if(line=='[0]              Pin Power Map (MeV/s)')
     then
-      for i in `seq 1 10`;
+      for i in `seq 1 16`;
       do
-          j=$i+2
-          grep -A$j 'Pin Power Map (MeV/s)' $filename >> $2
+          num=3
+          j=$(($i+$num))
+          grep -A$j 'Pin Power Map (MeV/s)' $filename | tail -n1 >> $2
       done
     fi
 done < "$filename"
